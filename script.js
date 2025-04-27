@@ -189,6 +189,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Theme switch functionality (light/dark mode toggle)
     const toggleTheme = function() {
         document.body.classList.toggle('dark-theme');
+        
+        // Update theme icon
+        if (document.body.classList.contains('dark-theme')) {
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+        
         localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
     };
     
@@ -228,59 +236,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.classList.add('dark-theme');
         themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
     }
-    
-    // Update theme icon when theme changes
-    const updateThemeIcon = function() {
-        if (document.body.classList.contains('dark-theme')) {
-            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-        } else {
-            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-        }
-    };
-    
-    // Add dark theme styles dynamically
-    const style = document.createElement('style');
-    style.textContent = `
-        .dark-theme {
-            --light-color: #1a1a2e;
-            --dark-color: #f8f9fa;
-            --gray-color: #b8b8b8;
-            --background-gradient: linear-gradient(120deg, #16213e, #1a1a2e);
-        }
-        
-        .dark-theme #navbar {
-            background-color: rgba(26, 26, 46, 0.95);
-        }
-        
-        .dark-theme .nav-scrolled {
-            background-color: rgba(26, 26, 46, 0.98);
-        }
-        
-        .dark-theme .burger div {
-            background-color: var(--dark-color);
-        }
-        
-        .dark-theme .about {
-            background-color: var(--light-color);
-        }
-        
-        .dark-theme .skills {
-            background-color: #16213e;
-        }
-        
-        .dark-theme .personal-info {
-            background-color: #212742;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-        }
-        
-        .dark-theme .form-group input,
-        .dark-theme .form-group textarea {
-            background-color: #212742;
-            border-color: #333;
-            color: var(--dark-color);
-        }
-    `;
-    document.head.appendChild(style);
     
     // Add back-to-top button
     const backToTop = document.createElement('div');
