@@ -535,3 +535,83 @@ footer {
         width: 100%;
     }
 }
+
+/* Dark Theme Styles */
+.dark-theme {
+    --light-color: #1a1a2e;
+    --dark-color: #f8f9fa;
+    --gray-color: #b8b8b8;
+    --background-gradient: linear-gradient(120deg, #16213e, #1a1a2e);
+    color: var(--dark-color); /* This ensures all text uses the light color */
+}
+
+.dark-theme #navbar {
+    background-color: rgba(26, 26, 46, 0.95);
+}
+
+.dark-theme .nav-links a {
+    color: var(--dark-color);
+}
+
+.dark-theme .nav-scrolled {
+    background-color: rgba(26, 26, 46, 0.98);
+}
+
+.dark-theme .burger div {
+    background-color: var(--dark-color);
+}
+
+.dark-theme .about {
+    background-color: var(--light-color);
+}
+
+.dark-theme .about-text p {
+    color: var(--dark-color);
+}
+
+.dark-theme .info-value {
+    color: var(--dark-color);
+}
+
+.dark-theme .skills {
+    background-color: #16213e;
+}
+
+.dark-theme .skill-name {
+    color: var(--dark-color);
+}
+
+.dark-theme .personal-info {
+    background-color: #212742;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.dark-theme .form-group input,
+.dark-theme .form-group textarea {
+    background-color: #212742;
+    border-color: #333;
+    color: var(--dark-color);
+}
+
+.dark-theme .section-title {
+    color: var(--dark-color);
+}
+
+.dark-theme .skill-category h3 {
+    color: var(--accent-color);
+}
+
+.dark-theme .nav-links {
+    background-color: rgba(26, 26, 46, 0.95);
+}
+
+.dark-theme .contact {
+    background-color: #1a1a2e;
+}
+
+/* Add these specific styles for mobile navigation in dark mode */
+@media screen and (max-width: 768px) {
+    .dark-theme .nav-links {
+        background-color: rgba(26, 26, 46, 0.95);
+    }
+}
