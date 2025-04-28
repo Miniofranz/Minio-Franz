@@ -64,13 +64,22 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Animate skill bars when in viewport
-    const skillLevels = document.querySelectorAll('.skill-level');
-    
+    // Enhanced skill animation function
     function animateSkills() {
+        const skillLevels = document.querySelectorAll('.skill-level');
+        
         skillLevels.forEach(skill => {
             const level = skill.getAttribute('data-level');
-            skill.style.width = level + '%';
+            
+            // Set data-level attribute on skill-name elements for the percentage display
+            const skillItem = skill.closest('.skill-item');
+            const skillName = skillItem.querySelector('.skill-name');
+            skillName.setAttribute('data-level', level);
+            
+            // Animate the skill bar with a slight delay
+            setTimeout(() => {
+                skill.style.width = level + '%';
+            }, 200);
         });
     }
     
@@ -78,16 +87,34 @@ document.addEventListener('DOMContentLoaded', function() {
     const skillsSection = document.querySelector('.skills');
     let skillsAnimated = false;
     
-    window.addEventListener('scroll', function() {
-        if (!skillsAnimated) {
+    const checkSkillsInView = function() {
+        if (!skillsAnimated && skillsSection) {
             const position = skillsSection.getBoundingClientRect();
             
             // If skills section is in viewport
-            if (position.top <= window.innerHeight && position.bottom >= 0) {
+            if (position.top <= window.innerHeight * 0.8 && position.bottom >= 0) {
                 animateSkills();
                 skillsAnimated = true;
+                
+                // Add animation to skill categories
+                const skillCategories = document.querySelectorAll('.skill-category');
+                skillCategories.forEach((category, index) => {
+                    setTimeout(() => {
+                        category.style.opacity = '1';
+                        category.style.transform = 'translateY(0)';
+                    }, index * 200);
+                });
             }
         }
+    };
+    
+    window.addEventListener('scroll', checkSkillsInView);
+    
+    // Initialize skill category styles for animation
+    document.querySelectorAll('.skill-category').forEach((category, index) => {
+        category.style.opacity = '0';
+        category.style.transform = 'translateY(30px)';
+        category.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
     });
     
     // Form submission (simulated)
@@ -146,7 +173,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Add scroll reveal animation
-    document.querySelectorAll('.about-content, .skills-container, .contact-container').forEach(section => {
+    document.querySelectorAll('.about-content, .contact-container').forEach(section => {
         window.addEventListener('scroll', function() {
             const rect = section.getBoundingClientRect();
             const isInViewport = rect.top <= window.innerHeight * 0.8;
@@ -165,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Check for sections in viewport on initial load
     const checkInitialScroll = function() {
-        document.querySelectorAll('.about-content, .skills-container, .contact-container').forEach(section => {
+        document.querySelectorAll('.about-content, .contact-container').forEach(section => {
             const rect = section.getBoundingClientRect();
             const isInViewport = rect.top <= window.innerHeight * 0.8;
             
@@ -175,16 +202,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Check if skills section is in viewport initially
-        const skillsRect = skillsSection.getBoundingClientRect();
-        if (skillsRect.top <= window.innerHeight && skillsRect.bottom >= 0) {
-            animateSkills();
-            skillsAnimated = true;
-        }
+        // Also check skills section initially
+        checkSkillsInView();
     };
     
     // Run initial scroll check after a small delay
-    setTimeout(checkInitialScroll, 100);
+    setTimeout(checkInitialScroll, 300);
     
     // Theme switch functionality (light/dark mode toggle)
     const toggleTheme = function() {
