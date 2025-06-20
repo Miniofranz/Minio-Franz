@@ -318,4 +318,46 @@ document.addEventListener('DOMContentLoaded', function() {
         const currentYear = new Date().getFullYear();
         footerYear.innerHTML = `&copy; ${currentYear} Minio Franz M. Vosotros. All Rights Reserved.`;
     }
+    
+    // Section reveal animation
+    const revealElements = document.querySelectorAll('section, .skill-category, .about .personal-info');
+    const revealOnScroll = function() {
+        revealElements.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top <= window.innerHeight * 0.85) {
+                el.classList.add('visible');
+            }
+        });
+    };
+    window.addEventListener('scroll', revealOnScroll);
+    setTimeout(revealOnScroll, 400);
+    // Initial state
+    revealElements.forEach(el => el.classList.add('reveal'));
+
+    // Ripple effect for buttons
+    document.querySelectorAll('.btn.ripple').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            const ripple = document.createElement('span');
+            ripple.className = 'ripple-effect';
+            ripple.style.left = (e.clientX - btn.getBoundingClientRect().left) + 'px';
+            ripple.style.top = (e.clientY - btn.getBoundingClientRect().top) + 'px';
+            btn.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 600);
+        });
+    });
+
+    // Floating label support for contact form
+    document.querySelectorAll('.form-group input, .form-group textarea').forEach(input => {
+        input.addEventListener('blur', function() {
+            if (this.value) {
+                this.classList.add('filled');
+            } else {
+                this.classList.remove('filled');
+            }
+        });
+        // For pre-filled values
+        if (input.value) {
+            input.classList.add('filled');
+        }
+    });
 });
