@@ -790,3 +790,174 @@ footer {
         background-color: rgba(26, 26, 46, 0.95);
     }
 }
+
+/* Glassmorphic Navbar */
+.glassmorphic {
+    background: rgba(255,255,255,0.25);
+    box-shadow: 0 8px 32px 0 rgba(31,38,135,0.37);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 0 0 20px 20px;
+    border: 1px solid rgba(255,255,255,0.18);
+}
+
+/* Animated Gradient Background for Hero */
+.animated-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1;
+    background: linear-gradient(120deg, #4a6bff, #ff6b4a, #2a3b8f, #ffb84a);
+    background-size: 400% 400%;
+    animation: gradientMove 12s ease infinite;
+    opacity: 0.7;
+    border-radius: 0 0 40px 40px;
+}
+@keyframes gradientMove {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+/* Glowing Profile Image */
+.profile-image-container.glow {
+    box-shadow: 0 0 40px 10px var(--primary-color), 0 0 80px 20px var(--accent-color);
+    transition: box-shadow 0.4s;
+}
+.profile-image-container.glow:hover {
+    box-shadow: 0 0 60px 20px var(--accent-color), 0 0 120px 40px var(--primary-color);
+}
+
+/* Ripple Effect for Buttons */
+.btn.ripple {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+.btn.ripple:after {
+    content: '';
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 200%; height: 200%;
+    background: rgba(255,255,255,0.3);
+    border-radius: 50%;
+    opacity: 0;
+    transition: transform 0.5s, opacity 0.8s;
+    pointer-events: none;
+    z-index: 2;
+}
+.btn.ripple:active:after {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    transition: 0s;
+}
+
+/* Tertiary Button */
+.tertiary-btn {
+    background: transparent;
+    color: var(--accent-color);
+    border: 2px solid var(--accent-color);
+}
+.tertiary-btn:hover {
+    background: var(--accent-color);
+    color: #fff;
+}
+
+/* Skill Icons */
+.skill-name i {
+    margin-right: 8px;
+    font-size: 1.2em;
+    vertical-align: middle;
+}
+
+/* Floating Labels for Contact Form */
+.form-group {
+    position: relative;
+    margin-bottom: 30px;
+}
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 14px 12px 14px 12px;
+    border: 1.5px solid #ccc;
+    border-radius: 8px;
+    background: transparent;
+    font-size: 1rem;
+    color: var(--dark-color);
+    outline: none;
+    transition: border 0.3s;
+}
+.form-group label {
+    position: absolute;
+    left: 14px;
+    top: 16px;
+    color: #888;
+    background: transparent;
+    font-size: 1rem;
+    pointer-events: none;
+    transition: 0.2s;
+}
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label,
+.form-group textarea:focus + label,
+.form-group textarea:not(:placeholder-shown) + label {
+    top: -10px;
+    left: 10px;
+    font-size: 0.85rem;
+    color: var(--primary-color);
+    background: var(--light-color);
+    padding: 0 4px;
+}
+
+/* Card/Glassmorphism for About/Skills */
+.about .personal-info, .skill-category {
+    background: rgba(255,255,255,0.6);
+    box-shadow: 0 8px 32px 0 rgba(31,38,135,0.10);
+    backdrop-filter: blur(8px);
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.18);
+}
+
+/* Section Reveal Animation */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(.77,0,.18,1), transform 0.8s cubic-bezier(.77,0,.18,1);
+}
+.reveal.visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* Improved Dark Mode Vibrancy */
+.dark-theme .glassmorphic {
+    background: rgba(34, 40, 49, 0.7);
+    border: 1px solid rgba(255,255,255,0.08);
+}
+.dark-theme .about .personal-info, .dark-theme .skill-category {
+    background: rgba(34, 40, 49, 0.7);
+    color: #fff;
+}
+.dark-theme .form-group input, .dark-theme .form-group textarea {
+    background: rgba(34, 40, 49, 0.7);
+    color: #fff;
+    border: 1.5px solid #444;
+}
+.dark-theme .form-group label {
+    color: #bbb;
+    background: transparent;
+}
+.dark-theme .form-group input:focus + label,
+.dark-theme .form-group input:not(:placeholder-shown) + label,
+.dark-theme .form-group textarea:focus + label,
+.dark-theme .form-group textarea:not(:placeholder-shown) + label {
+    color: var(--accent-color);
+    background: #222831;
+}
+.dark-theme .tertiary-btn {
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+.dark-theme .tertiary-btn:hover {
+    background: var(--accent-color);
+    color: #fff;
+}
